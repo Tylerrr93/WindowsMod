@@ -1,0 +1,36 @@
+{
+    "extends": "English",
+    "dictionaries": {
+
+        "itemGroup": {
+			"modWindowsModWindowItem": ["Window Item"]
+		},
+
+        "tileEvent": {
+            "modWindowsModMeltedWindow": ["Glass Window (tile event variant)"]
+        },
+
+        "item": {
+
+			"modWindowsModGlassWindow": ["Glass window", "A fragile window that can be attached to walls."]
+
+		},
+
+        "doodad": {
+
+			"modWindowsModGraniteWallWindow": "Windowed Granite Wall",
+            "modWindowsModBasaltWallWindow": "Windowed Basalt Wall",
+            "modWindowsModIceWallWindow": "Windowed Ice Wall",
+            "modWindowsModSnowWallWindow": "Windowed Snow Wall",
+            "modWindowsModClayWallWindow": "Windowed Clay Wall",
+            "modWindowsModWoodenWallWindow": "Windowed Wooden Wall",
+            "modWindowsModAshCementWallWindow": "Windowed Ash-Cement Wall",
+            "modWindowsModSandstoneWallWindow": "Windowed Sandstone Wall"
+
+		},
+
+        "action": {
+			"modWindowsModAttachWindow": ["Attach Window", "Attach a window to a wall."]
+		}
+    }
+}

@@ -1,0 +1,14 @@
+{
+	"name": "Windows Mod",
+	"description": "A mod which adds a window item which can be attached to walls",
+	"version": "1.0.0",
+	"author": "TTastic",
+	"file": "out/Mod",
+	"waywardVersion": "2.14.0-beta",
+	"languages": [
+		"lang/English"
+	],
+	"multiplayer": "compatible",
+	"unloadable": true,
+	"allowUnlockingMilestones": true
+}
