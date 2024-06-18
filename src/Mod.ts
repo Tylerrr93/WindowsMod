@@ -6,10 +6,10 @@ import { RecipeComponent} from "@wayward/game/game/item/ItemDescriptions";
 import { SkillType } from "@wayward/game/game/entity/IHuman";
 import { ActionType } from "@wayward/game/game/entity/action/IAction";
 import { BiomeType } from "@wayward/game/game/biome/IBiome";
+
 import { WINMOD_NAME } from "./Constants";
 import AttachWindow from "./actions/AttachWindow";
 import WindowedWallDoodadsRegistry from "./doodads/WindowedWallDoodadsRegistry";
-import { TileEventType } from "@wayward/game/game/tile/ITileEvent";
  
 //////////////////////////////////////////////////////////////////////////////////////
 //To get item and doodad descriptions from in game f10 console:
@@ -33,26 +33,19 @@ export default class WindowsMod extends Mod {
     /////////////////////////
     //Doodads registrations
 
-    //Windowed wall doodads
+    //Windowed wall doodads registry
     @Register.registry(WindowedWallDoodadsRegistry)
 	public readonly doodads: WindowedWallDoodadsRegistry; 
 
-    /////////////////
-    //Tile Events
-
-    @Register.tileEvent("MeltedWindow", {
-        pickUp: Registry<WindowsMod>().get("itemGlassWindow"),
-        //items: [
-            //{
-                //type: Registry<WindowsMod>().get("itemGlassWindow"),
-            //}
-        //],
-        //decayMax: 1
-    })
-    public tileEventMeltedWindow: TileEventType;
-
     //////////////////////
     //Items registrations
+
+    @Register.item("WoodenWallWindow", {
+        use: [Registry<WindowsMod>().get("actionAttachWindow")],
+        worth: 40,
+        spawnOnMerchant: [BiomeType.Random]
+    })
+    public itemWoodenWallWindow: ItemType;
 
     @Register.item("GlassWindow", {
         use: [Registry<WindowsMod>().get("actionAttachWindow")],
@@ -66,7 +59,7 @@ export default class WindowsMod extends Mod {
             level: RecipeLevel.Advanced,
             runeChance: [Deity.Good, 0.05],
         },
-        durability: 20,
+        durability: 5,
         weight: 4,
         worth: 40,
         spawnOnMerchant: [BiomeType.Random],

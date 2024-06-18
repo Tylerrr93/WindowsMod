@@ -18,7 +18,7 @@ export default class WindowedWallDoodadsRegistry {
         blockMove: true,
         canBreak: true,
         blockJump: true,
-        repairItem: ItemType.SheetOfGlass,
+        asItem: ItemType.SheetOfGlass, //Repairs with
         particles: {
             r: 130,
             g: 128,
@@ -40,7 +40,7 @@ export default class WindowedWallDoodadsRegistry {
         blockMove: true,
         canBreak: true,
         blockJump: true,
-        repairItem: ItemType.SheetOfGlass,
+        asItem: ItemType.SheetOfGlass,
         particles: {
             r: 130,
             g: 128,
@@ -62,7 +62,7 @@ export default class WindowedWallDoodadsRegistry {
         blockMove: true,
         canBreak: true,
         blockJump: true,
-        repairItem: ItemType.SheetOfGlass,
+        asItem: ItemType.SheetOfGlass,
         particles: {
             r: 130,
             g: 128,
@@ -86,7 +86,7 @@ export default class WindowedWallDoodadsRegistry {
         meltsInto: [
             12, //TileEventType.PuddleOfFreshWater
             12,
-            Registry<WindowsMod>(WINMOD_NAME).get("tileEventMeltedWindow")
+            12
         ],
         meltFromItem: ItemType.IceWall //Item that decides the melt-ability of the doodad
     })
@@ -100,7 +100,7 @@ export default class WindowedWallDoodadsRegistry {
         blockMove: true,
         canBreak: true,
         blockJump: true,
-        repairItem: ItemType.SheetOfGlass,
+        asItem: ItemType.SheetOfGlass,
         particles: {
             r: 130,
             g: 128,
@@ -122,7 +122,7 @@ export default class WindowedWallDoodadsRegistry {
         blockMove: true,
         canBreak: true,
         blockJump: true,
-        repairItem: ItemType.SheetOfGlass,
+        asItem: ItemType.SheetOfGlass,
         particles: {
             r: 130,
             g: 128,
@@ -144,7 +144,7 @@ export default class WindowedWallDoodadsRegistry {
         blockMove: true,
         canBreak: true,
         blockJump: true,
-        repairItem: ItemType.SheetOfGlass,
+        asItem: ItemType.SheetOfGlass,
         particles: {
             r: 130,
             g: 128,
@@ -161,12 +161,12 @@ export default class WindowedWallDoodadsRegistry {
     @Register.doodad("WoodenWallWindow", {
         pickUp: [
             ItemType.WoodenWall, 
-            Registry<WindowsMod>(WINMOD_NAME).get("itemGlassWindow")
+            Registry<WindowsMod>(WINMOD_NAME).get("itemGlassWindow"),
         ], //Picks up into
         blockMove: true,
         canBreak: true,
         blockJump: true,
-        repairItem: ItemType.SheetOfGlass,
+        asItem: Registry<WindowsMod>(WINMOD_NAME).get("itemWoodenWallWindow"),
         particles: {
             r: 130,
             g: 128,
@@ -176,7 +176,7 @@ export default class WindowedWallDoodadsRegistry {
         disableDrop: true,
         isWall: true,
         blockLos: false,
-        civilizationScore: 4
+        civilizationScore: 4,
     })
     public doodadWoodenWallWindow: DoodadType;
 
@@ -188,7 +188,7 @@ export default class WindowedWallDoodadsRegistry {
         blockMove: true,
         canBreak: true,
         blockJump: true,
-        repairItem: ItemType.SheetOfGlass,
+        asItem: ItemType.SheetOfGlass,
         particles: {
             r: 130,
             g: 128,

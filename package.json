@@ -6,11 +6,11 @@
 		"watch": "npx tsc --build --watch --pretty --preserveWatchOutput"
 	},
 	"dependencies": {
-		"@types/node": "18.18.6",
-		"@wayward/types": "^2.14.0-beta.dev.20240504.1"
+		"@types/node": "18.19.34",
+		"@wayward/types": "^2.14.0-beta.dev.20240614.1"
 	},
 	"devDependencies": {
 		"rimraf": "3.0.2",
-		"typescript": "5.5.0-dev.20240504"
+		"typescript": "5.5.1-rc"
 	}
 }

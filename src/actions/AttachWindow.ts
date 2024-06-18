@@ -26,7 +26,6 @@ export default new Action(ActionArgument.ItemInventory)
         const player = action.executor;
         const tile = action.executor.facingTile;
         const tileDoodad = tile.doodad!;
-        const island = player.island;
 
         let newDoodadType;
         switch (tileDoodad.type) {
@@ -59,13 +58,18 @@ export default new Action(ActionArgument.ItemInventory)
                 return; // Exit if the doodad type is not handled
         }
 
+        let tileDoodadDura = tileDoodad.durability;
+        let tileDoodadDuraMax = tileDoodad.durabilityMax;
+        let tileDoodadQuality = tileDoodad.quality;
+        console.log("tileDoodadDura:" + tileDoodadDura);
+
         action.executor.island.doodads.remove(tileDoodad);
-        action.executor.island.doodads.create(newDoodadType, action.executor.facingTile);
-        island.items.remove(item);
+        action.executor.island.doodads.create(newDoodadType, action.executor.facingTile, {durability: tileDoodadDura, durabilityMax: tileDoodadDuraMax, quality: tileDoodadQuality});
+        action.executor.island.items.remove(item);
 
         // Updates so windowed wall is visible and so player has LOS through it now
         renderers.updateView(undefined, RenderSource.Mod, true);
 
-        player.passTurn();
+        player.passTurn(); 
 
     });
