@@ -61,15 +61,31 @@ export default new Action(ActionArgument.ItemInventory)
         let tileDoodadDura = tileDoodad.durability;
         let tileDoodadDuraMax = tileDoodad.durabilityMax;
         let tileDoodadQuality = tileDoodad.quality;
-        console.log("tileDoodadDura:" + tileDoodadDura);
 
         action.executor.island.doodads.remove(tileDoodad);
-        action.executor.island.doodads.create(newDoodadType, action.executor.facingTile, {durability: tileDoodadDura, durabilityMax: tileDoodadDuraMax, quality: tileDoodadQuality});
+
+        let newDoodad = action.executor.island.doodads.create(
+            newDoodadType, 
+            action.executor.facingTile, 
+            { 
+                durability: tileDoodadDura, 
+                durabilityMax: tileDoodadDuraMax, 
+                quality: tileDoodadQuality 
+            }
+        );
+
+        //Sets the creator of the walled doodad so the creator can see numerical durability values
+        if (newDoodad) {
+            newDoodad.builderIdentifier = action.executor.identifier;
+        } 
+
+        // Removes the glass window item from inventory
         action.executor.island.items.remove(item);
 
         // Updates so windowed wall is visible and so player has LOS through it now
         renderers.updateView(undefined, RenderSource.Mod, true);
 
-        player.passTurn(); 
+        player.passTurn();
+ 
 
     });
