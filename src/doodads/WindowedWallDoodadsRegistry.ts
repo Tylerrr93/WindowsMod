@@ -160,12 +160,12 @@ export default class WindowedWallDoodadsRegistry {
 
     @Register.doodad("WoodenWallWindow", {
         pickUp: [
-            Registry<WindowsMod>(WINMOD_NAME).get("itemWoodenWallWindow")
+            Registry<WindowsMod>(WINMOD_NAME).registry("items").get("itemWoodenWallWindow")
         ], //Picks up into
         blockMove: true,
         canBreak: true,
         blockJump: true,
-        asItem: Registry<WindowsMod>(WINMOD_NAME).get("itemWoodenWallWindow"),
+        asItem: Registry<WindowsMod>(WINMOD_NAME).registry("items").get("itemWoodenWallWindow"),
         particles: {
             r: 130,
             g: 128,
@@ -177,7 +177,7 @@ export default class WindowedWallDoodadsRegistry {
         blockLos: false,
         civilizationScore: 4,
         isFlammable: true,
-        burnsLike: [Registry<WindowsMod>(WINMOD_NAME).get("itemWoodenWallWindow")]
+        burnsLike: [Registry<WindowsMod>(WINMOD_NAME).registry("items").get("itemWoodenWallWindow")]
     })
     public doodadWoodenWallWindow: DoodadType;
 

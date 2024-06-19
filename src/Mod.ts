@@ -9,6 +9,7 @@ import { BiomeType } from "@wayward/game/game/biome/IBiome";
 import { WINMOD_NAME } from "./Constants";
 import AttachWindow from "./actions/AttachWindow";
 import WindowedWallDoodadsRegistry from "./doodads/WindowedWallDoodadsRegistry";
+import WindowedWallItemsRegistry from "./items/WindowedWallItemsRegistry";
  
 //////////////////////////////////////////////////////////////////////////////////////
 //To get item and doodad descriptions from in game f10 console:
@@ -23,52 +24,24 @@ export default class WindowsMod extends Mod {
     @Mod.instance(WINMOD_NAME)
     public static readonly WINMOD: WindowsMod;
 
+    /////////////////////////
+    //Registries
+
+    //Windowed wall doodads registry
+    @Register.registry(WindowedWallDoodadsRegistry)
+	public readonly doodads: WindowedWallDoodadsRegistry;
+
+    @Register.registry(WindowedWallItemsRegistry)
+    public readonly items: WindowedWallItemsRegistry;
+
     ////////////////////////
     //Actions registrations
 
     @Register.action("AttachWindow", AttachWindow)
     public readonly actionAttachWindow: ActionType;
 
-    /////////////////////////
-    //Registries
-
-    //Windowed wall doodads registry
-    @Register.registry(WindowedWallDoodadsRegistry)
-	public readonly doodads: WindowedWallDoodadsRegistry; 
-
     //////////////////////
     //Items registrations
-
-    @Register.item("WoodenWallWindow", {
-        use: [ActionType.Build],
-        recipe: {
-            components: [
-                RecipeComponent(ItemType.WoodenWall, 1, 1, 1),
-                RecipeComponent(Registry<WindowsMod>().get("itemGlassWindow"), 1, 1, 1),
-                RecipeComponent(ItemTypeGroup.Hammer, 1, 0, 0)
-            ],
-            skill: SkillType.Woodworking,
-            level: RecipeLevel.Advanced,
-            runeChance: [Deity.Good, 0.05],
-        },
-        craftable: false,
-        disassemble: false,
-        onUse: {
-            [ActionType.Build]: {
-                type: Registry<WindowsMod>().registry("doodads").get("doodadWoodenWallWindow")
-            }
-        },
-        worth: 55,
-        durability: 15,
-        flammable: true,
-        onBurn: [
-            ItemType.WoodenPlank,
-            ItemType.Log,
-            ItemType.SharpGlass,
-            ItemType.SharpGlass
-        ]
-    }) 
-    public itemWoodenWallWindow: ItemType; 
 
     @Register.item("GlassWindow", {
         use: [Registry<WindowsMod>().get("actionAttachWindow")],
@@ -94,10 +67,10 @@ export default class WindowsMod extends Mod {
 	@Register.itemGroup("WindowItem", {
 		types: [
             Registry<WindowsMod>().get("itemGlassWindow"),
-            Registry<WindowsMod>().get("itemWoodenWallWindow")
+            Registry<WindowsMod>().registry("items").get("itemWoodenWallWindow")
 		],
 		default: Registry<WindowsMod>().get("itemGlassWindow"),
-	})
+	}) 
 	public groupWindowsMod: ItemTypeGroup;
 	
 }
