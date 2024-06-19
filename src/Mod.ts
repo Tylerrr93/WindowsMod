@@ -6,7 +6,6 @@ import { RecipeComponent} from "@wayward/game/game/item/ItemDescriptions";
 import { SkillType } from "@wayward/game/game/entity/IHuman";
 import { ActionType } from "@wayward/game/game/entity/action/IAction";
 import { BiomeType } from "@wayward/game/game/biome/IBiome";
-
 import { WINMOD_NAME } from "./Constants";
 import AttachWindow from "./actions/AttachWindow";
 import WindowedWallDoodadsRegistry from "./doodads/WindowedWallDoodadsRegistry";
@@ -41,11 +40,29 @@ export default class WindowsMod extends Mod {
     //Items registrations
 
     @Register.item("WoodenWallWindow", {
-        use: [Registry<WindowsMod>().get("actionAttachWindow")],
+        use: [ActionType.Build],
+        recipe: {
+            components: [
+                RecipeComponent(ItemType.WoodenWall, 1, 1, 1),
+                RecipeComponent(Registry<WindowsMod>().get("itemGlassWindow"), 1, 1, 1),
+                RecipeComponent(ItemTypeGroup.Hammer, 1, 0, 0)
+            ],
+            skill: SkillType.Woodworking,
+            level: RecipeLevel.Advanced,
+            runeChance: [Deity.Good, 0.05],
+        },
+        craftable: false,
+        onUse: {
+            [ActionType.Build]: {
+                type: Registry<WindowedWallDoodadsRegistry>().get("doodadWoodenWallWindow")
+            } 
+        },
         worth: 40,
-        spawnOnMerchant: [BiomeType.Random]
-    })
-    public itemWoodenWallWindow: ItemType;
+        spawnOnMerchant: [BiomeType.Random],
+        durability: 5,
+        weight: 4
+    }) 
+    public itemWoodenWallWindow: ItemType; 
 
     @Register.item("GlassWindow", {
         use: [Registry<WindowsMod>().get("actionAttachWindow")],
@@ -70,7 +87,8 @@ export default class WindowsMod extends Mod {
 
 	@Register.itemGroup("WindowItem", {
 		types: [
-            Registry<WindowsMod>().get("itemGlassWindow")
+            Registry<WindowsMod>().get("itemGlassWindow"),
+            Registry<WindowsMod>().get("itemWoodenWallWindow")
 		],
 		default: Registry<WindowsMod>().get("itemGlassWindow"),
 	})

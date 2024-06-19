@@ -160,8 +160,7 @@ export default class WindowedWallDoodadsRegistry {
 
     @Register.doodad("WoodenWallWindow", {
         pickUp: [
-            ItemType.WoodenWall, 
-            Registry<WindowsMod>(WINMOD_NAME).get("itemGlassWindow"),
+            Registry<WindowsMod>(WINMOD_NAME).get("itemWoodenWallWindow")
         ], //Picks up into
         blockMove: true,
         canBreak: true,

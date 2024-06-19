@@ -12,7 +12,8 @@
 
         "item": {
 
-			"modWindowsModGlassWindow": ["Glass window", "A fragile window that can be attached to walls."]
+			"modWindowsModGlassWindow": ["Glass window", "A fragile window that can be attached to walls."],
+            "modWindowsModWoodenWallWindow": ["Windowed Wooden Wall", "A windowed wooden wall."]
 
 		},
 
