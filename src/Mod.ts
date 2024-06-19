@@ -52,18 +52,18 @@ export default class WindowsMod extends Mod {
             runeChance: [Deity.Good, 0.05],
         },
         craftable: false,
+        disassemble: false,
         onUse: {
             [ActionType.Build]: {
                 type: Registry<WindowsMod>().registry("doodads").get("doodadWoodenWallWindow")
             }
         },
-        worth: 40,
-        spawnOnMerchant: [BiomeType.Random],
+        worth: 55,
         durability: 15,
         flammable: true,
         onBurn: [
-            ItemType.PileOfAsh,
-            ItemType.PileOfAsh,
+            ItemType.WoodenPlank,
+            ItemType.Log,
             ItemType.SharpGlass,
             ItemType.SharpGlass
         ]
@@ -86,6 +86,7 @@ export default class WindowsMod extends Mod {
         weight: 4,
         worth: 40,
         spawnOnMerchant: [BiomeType.Random],
+        noCraftingQualityBonus: true,
         recipeCache: []
     })
     public itemGlassWindow: ItemType;
