@@ -30,7 +30,7 @@ export default class WindowsMod extends Mod {
     public readonly actionAttachWindow: ActionType;
 
     /////////////////////////
-    //Doodads registrations
+    //Registries
 
     //Windowed wall doodads registry
     @Register.registry(WindowedWallDoodadsRegistry)
@@ -54,13 +54,19 @@ export default class WindowsMod extends Mod {
         craftable: false,
         onUse: {
             [ActionType.Build]: {
-                type: Registry<WindowedWallDoodadsRegistry>().get("doodadWoodenWallWindow")
-            } 
+                type: Registry<WindowsMod>().registry("doodads").get("doodadWoodenWallWindow")
+            }
         },
         worth: 40,
         spawnOnMerchant: [BiomeType.Random],
-        durability: 5,
-        weight: 4
+        durability: 15,
+        flammable: true,
+        onBurn: [
+            ItemType.PileOfAsh,
+            ItemType.PileOfAsh,
+            ItemType.SharpGlass,
+            ItemType.SharpGlass
+        ]
     }) 
     public itemWoodenWallWindow: ItemType; 
 
@@ -76,12 +82,11 @@ export default class WindowsMod extends Mod {
             level: RecipeLevel.Advanced,
             runeChance: [Deity.Good, 0.05],
         },
-        durability: 5,
+        durability: 10,
         weight: 4,
         worth: 40,
         spawnOnMerchant: [BiomeType.Random],
         recipeCache: []
-
     })
     public itemGlassWindow: ItemType;
 

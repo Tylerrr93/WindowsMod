@@ -176,6 +176,8 @@ export default class WindowedWallDoodadsRegistry {
         isWall: true,
         blockLos: false,
         civilizationScore: 4,
+        isFlammable: true,
+        burnsLike: [Registry<WindowsMod>(WINMOD_NAME).get("itemWoodenWallWindow")]
     })
     public doodadWoodenWallWindow: DoodadType;
 

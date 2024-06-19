@@ -79,7 +79,6 @@ export default new Action(ActionArgument.ItemInventory)
             newDoodad.builderIdentifier = action.executor.identifier;
         } 
 
-        // Removes the glass window item from inventory
         action.executor.island.items.remove(item);
 
         // Updates so windowed wall is visible and so player has LOS through it now
