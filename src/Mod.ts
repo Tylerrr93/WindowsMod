@@ -31,6 +31,7 @@ export default class WindowsMod extends Mod {
     @Register.registry(WindowedWallDoodadsRegistry)
 	public readonly doodads: WindowedWallDoodadsRegistry;
 
+    //WIndowed wall items registry
     @Register.registry(WindowedWallItemsRegistry)
     public readonly items: WindowedWallItemsRegistry;
 

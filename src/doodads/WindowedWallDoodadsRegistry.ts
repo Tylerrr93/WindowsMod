@@ -12,45 +12,43 @@ export default class WindowedWallDoodadsRegistry {
 
     @Register.doodad("GraniteWallWindow", {
         pickUp: [
-            ItemType.GraniteWall, 
-            Registry<WindowsMod>(WINMOD_NAME).get("itemGlassWindow") 
+            Registry<WindowsMod>(WINMOD_NAME).registry("items").get("itemGraniteWallWindow")
         ], //Picks up into
         blockMove: true,
         canBreak: true,
         blockJump: true,
-        asItem: ItemType.SheetOfGlass, //Repairs with
+        asItem: Registry<WindowsMod>(WINMOD_NAME).registry("items").get("itemGraniteWallWindow"),
         particles: {
             r: 130,
             g: 128,
             b: 128
+        },
+        reduceDurabilityOnGather: true,
+        disableDrop: true,
+        isWall: true,
+        blockLos: false,
+        civilizationScore: 4
+    })
+    public doodadGraniteWallWindow: DoodadType;
+
+    @Register.doodad("BasaltWallWindow", {
+        pickUp: [
+            Registry<WindowsMod>(WINMOD_NAME).registry("items").get("itemBasaltWallWindow")
+        ], //Picks up into
+        blockMove: true,
+        canBreak: true,
+        blockJump: true,
+        asItem: Registry<WindowsMod>(WINMOD_NAME).registry("items").get("itemBasaltWallWindow"),
+        particles: {
+            r: 39,
+            g: 37,
+            b: 37
         },
         reduceDurabilityOnGather: true,
         disableDrop: true,
         isWall: true,
         blockLos: false,
         civilizationScore: 5
-    })
-    public doodadGraniteWallWindow: DoodadType;
-
-    @Register.doodad("BasaltWallWindow", {
-        pickUp: [
-            ItemType.BasaltWall, 
-            Registry<WindowsMod>(WINMOD_NAME).get("itemGlassWindow")
-        ], //Picks up into
-        blockMove: true,
-        canBreak: true,
-        blockJump: true,
-        asItem: ItemType.SheetOfGlass,
-        particles: {
-            r: 130,
-            g: 128,
-            b: 128
-        },
-        reduceDurabilityOnGather: true,
-        disableDrop: true,
-        isWall: true,
-        blockLos: false,
-        civilizationScore: 6
     })
     public doodadBasaltWallWindow: DoodadType;  
 
