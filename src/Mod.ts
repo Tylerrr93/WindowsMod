@@ -70,6 +70,6 @@ export default class WindowsMod extends Mod {
         ],
         recipeCache: []
     })
-    public itemGlassWindow: ItemType; 
+    public itemGlassWindow: ItemType;  
 	
 }

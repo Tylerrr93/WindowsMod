@@ -8,6 +8,10 @@
 	"languages": [
 		"lang/English"
 	],
+	"tags": [
+		"Item",
+		"Doodad"
+	],
 	"multiplayer": "compatible",
 	"unloadable": true,
 	"allowUnlockingMilestones": true
