@@ -1,9 +1,9 @@
 import Mod from "@wayward/game/mod/Mod";
 import Register, { Registry } from "@wayward/game/mod/ModRegistry";
-import { ItemType } from "@wayward/game/game/item/IItem";
 import { WINMOD_NAME } from "../Constants";
 import WindowsMod from "src/Mod";
 import { DoodadType } from "@wayward/game/game/doodad/IDoodad";
+import { TileEventType } from "@wayward/game/game/tile/ITileEvent";
 
 export default class WindowedWallDoodadsRegistry {
 
@@ -34,7 +34,7 @@ export default class WindowedWallDoodadsRegistry {
     @Register.doodad("BasaltWallWindow", {
         pickUp: [
             Registry<WindowsMod>(WINMOD_NAME).registry("items").get("itemBasaltWallWindow")
-        ], //Picks up into
+        ], 
         blockMove: true,
         canBreak: true,
         blockJump: true,
@@ -54,54 +54,108 @@ export default class WindowedWallDoodadsRegistry {
 
     @Register.doodad("IceWallWindow", {
         pickUp: [
-            ItemType.IceWall, 
-            Registry<WindowsMod>(WINMOD_NAME).get("itemGlassWindow")
-        ], //Picks up into
+            Registry<WindowsMod>(WINMOD_NAME).registry("items").get("itemIceWallWindow")
+        ], 
         blockMove: true,
         canBreak: true,
         blockJump: true,
-        asItem: ItemType.SheetOfGlass,
+        asItem: Registry<WindowsMod>(WINMOD_NAME).registry("items").get("itemIceWallWindow"),
         particles: {
-            r: 130,
-            g: 128,
-            b: 128
+            r: 192,
+            g: 236,
+            b: 251
         },
         reduceDurabilityOnGather: true,
         disableDrop: true,
         isWall: true,
         blockLos: false,
-        civilizationScore: 4,
+        civilizationScore: 3,
         decayTemperatureRange: {
             temperature: {
                 minimum: -40,
                 maximum: 50
-        },
-        decayChance: {
-            minimum: 0,
-            maximum: 20
-        }
+            },
+            decayChance: {
+                minimum: 0,
+                maximum: 20
+            }
         },
         meltsInto: [
-            12, //TileEventType.PuddleOfFreshWater
-            12,
-            12
+            TileEventType.PuddleOfFreshWater,
+            TileEventType.PuddleOfFreshWater
         ],
-        meltFromItem: ItemType.IceWall //Item that decides the melt-ability of the doodad
+        meltFromItem: Registry<WindowsMod>(WINMOD_NAME).registry("items").get("itemIceWallWindow")
     })
-    public doodadIceWallWindow: DoodadType;
+    public doodadIceWallWindow: DoodadType; 
 
     @Register.doodad("SnowWallWindow", {
         pickUp: [
-            ItemType.SnowWall, 
-            Registry<WindowsMod>(WINMOD_NAME).get("itemGlassWindow")
-        ], //Picks up into
+            Registry<WindowsMod>(WINMOD_NAME).registry("items").get("itemSnowWallWindow")
+        ], 
         blockMove: true,
         canBreak: true,
         blockJump: true,
-        asItem: ItemType.SheetOfGlass,
+        asItem: Registry<WindowsMod>(WINMOD_NAME).registry("items").get("itemSnowWallWindow"),
         particles: {
-            r: 130,
-            g: 128,
+            r: 255,
+            g: 255,
+            b: 255
+        },
+        reduceDurabilityOnGather: true,
+        disableDrop: true,
+        isWall: true,
+        blockLos: false,
+        civilizationScore: 3,
+        decayTemperatureRange: {
+            temperature: {
+                minimum: -40,
+                maximum: 50
+            },
+            decayChance: {
+                minimum: 0,
+                maximum: 20
+            }
+        },
+        meltsInto: [
+            TileEventType.PuddleOfFreshWater,
+            TileEventType.PuddleOfFreshWater
+        ],
+        meltFromItem: Registry<WindowsMod>(WINMOD_NAME).registry("items").get("itemSnowWallWindow")
+    })
+    public doodadSnowWallWindow: DoodadType;
+
+    @Register.doodad("ClayWallWindow", {
+        pickUp: [
+            Registry<WindowsMod>(WINMOD_NAME).registry("items").get("itemClayWallWindow")
+        ], 
+        blockMove: true,
+        canBreak: true,
+        blockJump: true,
+        asItem: Registry<WindowsMod>(WINMOD_NAME).registry("items").get("itemClayWallWindow"),
+        particles: {
+            r: 200,
+            g: 205,
+            b: 207
+        },
+        reduceDurabilityOnGather: true,
+        disableDrop: true,
+        isWall: true,
+        blockLos: false,
+        civilizationScore: 5
+    })
+    public doodadClayWallWindow: DoodadType;
+
+    @Register.doodad("SandstoneWallWindow", {
+        pickUp: [
+            Registry<WindowsMod>(WINMOD_NAME).registry("items").get("itemSandstoneWallWindow")
+        ],
+        blockMove: true,
+        canBreak: true,
+        blockJump: true,
+        asItem: Registry<WindowsMod>(WINMOD_NAME).registry("items").get("itemSandstoneWallWindow"),
+        particles: {
+            r: 199,
+            g: 156,
             b: 128
         },
         reduceDurabilityOnGather: true,
@@ -110,64 +164,20 @@ export default class WindowedWallDoodadsRegistry {
         blockLos: false,
         civilizationScore: 4
     })
-    public doodadSnowWallWindow: DoodadType;
-
-    @Register.doodad("ClayWallWindow", {
-        pickUp: [
-            ItemType.ClayWall, 
-            Registry<WindowsMod>(WINMOD_NAME).get("itemGlassWindow")
-        ], //Picks up into
-        blockMove: true,
-        canBreak: true,
-        blockJump: true,
-        asItem: ItemType.SheetOfGlass,
-        particles: {
-            r: 130,
-            g: 128,
-            b: 128
-        },
-        reduceDurabilityOnGather: true,
-        disableDrop: true,
-        isWall: true,
-        blockLos: false,
-        civilizationScore: 6
-    })
-    public doodadClayWallWindow: DoodadType;
-
-    @Register.doodad("SandstoneWallWindow", {
-        pickUp: [
-            ItemType.SandstoneWall, 
-            Registry<WindowsMod>(WINMOD_NAME).get("itemGlassWindow")
-        ], //Picks up into
-        blockMove: true,
-        canBreak: true,
-        blockJump: true,
-        asItem: ItemType.SheetOfGlass,
-        particles: {
-            r: 130,
-            g: 128,
-            b: 128
-        },
-        reduceDurabilityOnGather: true,
-        disableDrop: true,
-        isWall: true,
-        blockLos: false,
-        civilizationScore: 5
-    })
     public doodadSandstoneWallWindow: DoodadType;
 
     @Register.doodad("WoodenWallWindow", {
         pickUp: [
             Registry<WindowsMod>(WINMOD_NAME).registry("items").get("itemWoodenWallWindow")
-        ], //Picks up into
+        ],
         blockMove: true,
         canBreak: true,
         blockJump: true,
         asItem: Registry<WindowsMod>(WINMOD_NAME).registry("items").get("itemWoodenWallWindow"),
         particles: {
-            r: 130,
-            g: 128,
-            b: 128
+            r: 132,
+            g: 96,
+            b: 44
         },
         reduceDurabilityOnGather: true,
         disableDrop: true,
@@ -181,23 +191,22 @@ export default class WindowedWallDoodadsRegistry {
 
     @Register.doodad("AshCementWallWindow", {
         pickUp: [
-            ItemType.AshCementWall, 
-            Registry<WindowsMod>(WINMOD_NAME).get("itemGlassWindow")
-        ], //Picks up into
+            Registry<WindowsMod>(WINMOD_NAME).registry("items").get("itemAshCementWallWindow")
+        ],
         blockMove: true,
         canBreak: true,
         blockJump: true,
-        asItem: ItemType.SheetOfGlass,
+        asItem: Registry<WindowsMod>(WINMOD_NAME).registry("items").get("itemAshCementWallWindow"),
         particles: {
-            r: 130,
-            g: 128,
-            b: 128
+            r: 136,
+            g: 134,
+            b: 132
         },
         reduceDurabilityOnGather: true,
         disableDrop: true,
         isWall: true,
         blockLos: false,
-        civilizationScore: 3
+        civilizationScore: 2
     })
     public doodadAshCementWallWindow: DoodadType;
 

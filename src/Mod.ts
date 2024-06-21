@@ -61,17 +61,11 @@ export default class WindowsMod extends Mod {
         worth: 40,
         spawnOnMerchant: [BiomeType.Random],
         noCraftingQualityBonus: true,
+        group:[
+            ItemTypeGroup.Housing
+        ],
         recipeCache: []
     })
     public itemGlassWindow: ItemType;
-
-	@Register.itemGroup("WindowItem", {
-		types: [
-            Registry<WindowsMod>().get("itemGlassWindow"),
-            Registry<WindowsMod>().registry("items").get("itemWoodenWallWindow")
-		],
-		default: Registry<WindowsMod>().get("itemGlassWindow"),
-	}) 
-	public groupWindowsMod: ItemTypeGroup;
 	
 }

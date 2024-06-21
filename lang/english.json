@@ -15,7 +15,12 @@
 			"modWindowsModGlassWindow": ["Glass window", "A fragile window that can be attached to walls."],
             "modWindowsModWoodenWallWindow": ["Windowed Wooden Wall", "A windowed wooden wall."],
             "modWindowsModGraniteWallWindow": ["Windowed Granite Wall", "A windowed granite wall."],
-            "modWindowsModBasaltWallWindow": ["Windowed Basalt Wall", "A windowed basalt wall."]
+            "modWindowsModBasaltWallWindow": ["Windowed Basalt Wall", "A windowed basalt wall."],
+            "modWindowsModIceWallWindow": ["Windowed Ice Wall", "A windowed ice wall."],
+            "modWindowsModSnowWallWindow": ["Windowed Snow Wall", "A windowed snow wall."],
+            "modWindowsModClayWallWindow": ["Windowed Clay Wall", "A windowed clay wall."],
+            "modWindowsModAshCementWallWindow": ["Windowed Ash-Cement Wall", "A windowed ash-cement wall."],
+            "modWindowsModSandstoneWallWindow": ["Windowed Sandstone Wall", "A windowed sandstone wall."]
 
 		},
 
