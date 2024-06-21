@@ -10,6 +10,8 @@ import { WINMOD_NAME } from "./Constants";
 import AttachWindow from "./actions/AttachWindow";
 import WindowedWallDoodadsRegistry from "./doodads/WindowedWallDoodadsRegistry";
 import WindowedWallItemsRegistry from "./items/WindowedWallItemsRegistry";
+import { DoodadTypeGroup } from "@wayward/game/game/doodad/IDoodad";
+import { DamageType } from "@wayward/game/game/entity/IEntity";
  
 //////////////////////////////////////////////////////////////////////////////////////
 //To get item and doodad descriptions from in game f10 console:
@@ -49,23 +51,25 @@ export default class WindowsMod extends Mod {
         recipe: {
             components: [
                 RecipeComponent(ItemType.WoodenPlank, 2, 2, 2),
-                RecipeComponent(ItemType.SheetOfGlass, 1, 1, 1),
+                RecipeComponent(ItemType.SheetOfGlass, 2, 2, 2),
+                RecipeComponent(ItemType.ClayBlowpipe, 1, 0, 0),
                 RecipeComponent(ItemTypeGroup.Hammer, 1, 0, 0)
             ],
             skill: SkillType.Glassblowing,
             level: RecipeLevel.Advanced,
+            requiredDoodads: [DoodadTypeGroup.LitKiln],
             runeChance: [Deity.Good, 0.05],
         },
         durability: 10,
-        weight: 4,
+        damageType: DamageType.Slashing,
         worth: 40,
         spawnOnMerchant: [BiomeType.Random],
         noCraftingQualityBonus: true,
         group:[
-            ItemTypeGroup.Housing
+            ItemTypeGroup.CraftingMaterial
         ],
         recipeCache: []
     })
-    public itemGlassWindow: ItemType;
+    public itemGlassWindow: ItemType; 
 	
 }
