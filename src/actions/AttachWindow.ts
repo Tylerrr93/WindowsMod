@@ -4,6 +4,7 @@ import { EntityType } from "@wayward/game/game/entity/IEntity";
 import { DoodadType } from "@wayward/game/game/doodad/IDoodad";
 import { RenderSource } from "@wayward/game/renderer/IRenderer";
 import WindowsMod from "../Mod";
+import { MessageType } from "@wayward/game/game/entity/player/IMessageManager";
 
 export default new Action(ActionArgument.ItemInventory)
     .setUsableBy(EntityType.Human)
@@ -79,7 +80,13 @@ export default new Action(ActionArgument.ItemInventory)
             newDoodad.builderIdentifier = action.executor.identifier;
         } 
 
-        action.executor.island.items.remove(item);
+        newDoodad?.setData("testdatafield", 19);
+        let doodadTestValue = newDoodad?.getData<number>("testdatafield")
+        console.log("The doodad test value is:" + doodadTestValue);
+        // Sending the message to the player
+        action.executor.messages.type(MessageType.Good).send(WindowsMod.WINMOD.messages.messageTestValue, doodadTestValue);
+        
+        action.executor.island.items.remove(item); 
 
         // Updates so windowed wall is visible and so player has LOS through it now
         renderers.updateView(undefined, RenderSource.Mod, true);

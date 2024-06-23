@@ -6,6 +6,10 @@
 			"modWindowsModWindowItem": ["WindowsMod Item"]
 		},
 
+        "message": {
+            "modWindowsModMsgTestValue": ["The test value is: {0}"]
+        },
+
         "tileEvent": {
             "modWindowsModMeltedWindow": ["Glass Window (tile event variant)"]
         },

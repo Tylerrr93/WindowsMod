@@ -12,6 +12,7 @@ import WindowedWallDoodadsRegistry from "./doodads/WindowedWallDoodadsRegistry";
 import WindowedWallItemsRegistry from "./items/WindowedWallItemsRegistry";
 import { DoodadTypeGroup } from "@wayward/game/game/doodad/IDoodad";
 import { DamageType } from "@wayward/game/game/entity/IEntity";
+import WindowsModMessageRegistry from "./messages/WindowsModMessageRegistry";
  
 //////////////////////////////////////////////////////////////////////////////////////
 //To get item and doodad descriptions from in game f10 console:
@@ -37,11 +38,18 @@ export default class WindowsMod extends Mod {
     @Register.registry(WindowedWallItemsRegistry)
     public readonly items: WindowedWallItemsRegistry;
 
+    //Messages registry
+    @Register.registry(WindowsModMessageRegistry)
+    public readonly messages: WindowsModMessageRegistry;
+
     ////////////////////////
     //Actions registrations
 
     @Register.action("AttachWindow", AttachWindow)
     public readonly actionAttachWindow: ActionType;
+
+    //@Register.message("MsgTestValue")
+    //public readonly messageTestValue: Message;
 
     //////////////////////
     //Items registrations
