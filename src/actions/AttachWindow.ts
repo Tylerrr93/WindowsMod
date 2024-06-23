@@ -80,10 +80,9 @@ export default new Action(ActionArgument.ItemInventory)
             newDoodad.builderIdentifier = action.executor.identifier;
         } 
 
+        // set/getData basic relay example
         newDoodad?.setData("testdatafield", 19);
         let doodadTestValue = newDoodad?.getData<number>("testdatafield")
-        console.log("The doodad test value is:" + doodadTestValue);
-        // Sending the message to the player
         action.executor.messages.type(MessageType.Good).send(WindowsMod.WINMOD.messages.messageTestValue, doodadTestValue);
         
         action.executor.island.items.remove(item); 
