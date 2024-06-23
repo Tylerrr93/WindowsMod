@@ -14,5 +14,6 @@
 	],
 	"multiplayer": "compatible",
 	"unloadable": true,
-	"allowUnlockingMilestones": true
+	"allowUnlockingMilestones": true,
+	"publishedFileId": "3271896900"
 }

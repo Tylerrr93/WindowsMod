@@ -29,7 +29,7 @@ export default class WindowedWallItemsRegistry {
             runeChance: [Deity.Good, 0.05]
         },
         craftable: false,
-        disassemble: false,
+        canDisassemble: false,
         onUse: {
             [ActionType.Build]: {
                 type: Registry<WindowsMod>(WINMOD_NAME).registry("doodads").get("doodadGraniteWallWindow")
@@ -57,7 +57,7 @@ export default class WindowedWallItemsRegistry {
             runeChance: [Deity.Good, 0.05]
         },
         craftable: false,
-        disassemble: false,
+        canDisassemble: false,
         onUse: {
             [ActionType.Build]: {
                 type: Registry<WindowsMod>(WINMOD_NAME).registry("doodads").get("doodadBasaltWallWindow")
@@ -85,7 +85,8 @@ export default class WindowedWallItemsRegistry {
             runeChance: [Deity.Good, 0.05]
         },
         craftable: false,
-        disassemble: true,
+        storeDisassemblyItems: true,
+        canDisassemble: false,
         onUse: {
             [ActionType.Build]: {
                 type: Registry<WindowsMod>(WINMOD_NAME).registry("doodads").get("doodadIceWallWindow")
@@ -139,7 +140,8 @@ export default class WindowedWallItemsRegistry {
             runeChance: [Deity.Good, 0.05]
         },
         craftable: false,
-        disassemble: true,
+        storeDisassemblyItems: true,
+        canDisassemble: false,
         onUse: {
             [ActionType.Build]: {
                 type: Registry<WindowsMod>(WINMOD_NAME).registry("doodads").get("doodadSnowWallWindow")
@@ -189,7 +191,7 @@ export default class WindowedWallItemsRegistry {
             runeChance: [Deity.Good, 0.05]
         },
         craftable: false,
-        disassemble: false,
+        canDisassemble: false,
         onUse: {
             [ActionType.Build]: {
                 type: Registry<WindowsMod>(WINMOD_NAME).registry("doodads").get("doodadClayWallWindow")
@@ -217,7 +219,7 @@ export default class WindowedWallItemsRegistry {
             runeChance: [Deity.Good, 0.05]
         },
         craftable: false,
-        disassemble: false,
+        canDisassemble: false,
         durability: 15,
         onUse: {
             [ActionType.Build]: {
@@ -245,7 +247,7 @@ export default class WindowedWallItemsRegistry {
             runeChance: [Deity.Good, 0.05]
         },
         craftable: false,
-        disassemble: false,
+        canDisassemble: false,
         onUse: {
             [ActionType.Build]: {
                 type: Registry<WindowsMod>(WINMOD_NAME).registry("doodads").get("doodadWoodenWallWindow")
@@ -276,7 +278,7 @@ export default class WindowedWallItemsRegistry {
             runeChance: [Deity.Good, 0.05]
         },
         craftable: false,
-        disassemble: false,
+        canDisassemble: false,
         durability: 10,
         onUse: {
             [ActionType.Build]: {

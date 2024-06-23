@@ -7,10 +7,10 @@
 	},
 	"dependencies": {
 		"@types/node": "18.19.34",
-		"@wayward/types": "^2.14.0-beta.dev.20240614.1"
+		"@wayward/types": "^2.14.0-beta.dev.20240623.1"
 	},
 	"devDependencies": {
 		"rimraf": "3.0.2",
-		"typescript": "5.5.1-rc"
+		"typescript": "5.5.2"
 	}
 }
