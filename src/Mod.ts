@@ -8,11 +8,17 @@ import { ActionType } from "@wayward/game/game/entity/action/IAction";
 import { BiomeType } from "@wayward/game/game/biome/IBiome";
 import { WINMOD_NAME } from "./Constants";
 import AttachWindow from "./actions/AttachWindow";
-import WindowedWallDoodadsRegistry from "./doodads/WindowedWallDoodadsRegistry";
-import WindowedWallItemsRegistry from "./items/WindowedWallItemsRegistry";
 import { DoodadTypeGroup } from "@wayward/game/game/doodad/IDoodad";
 import { DamageType } from "@wayward/game/game/entity/IEntity";
+import WindowedWallDoodadsRegistry from "./doodads/WindowedWallDoodadsRegistry";
+import WindowedWallItemsRegistry from "./items/WindowedWallItemsRegistry";
 import WindowsModMessageRegistry from "./messages/WindowsModMessageRegistry";
+import { EventHandler } from "@wayward/game/event/EventManager";
+import { EventBus } from "@wayward/game/event/EventBuses";
+import Doodad from "@wayward/game/game/doodad/Doodad";
+import Item from "@wayward/game/game/item/Item";
+import { Quality } from "@wayward/game/game/IObject";
+import TileEvent from "@wayward/game/game/tile/TileEvent"; 
  
 //////////////////////////////////////////////////////////////////////////////////////
 //To get item and doodad descriptions from in game f10 console:
@@ -48,9 +54,6 @@ export default class WindowsMod extends Mod {
     @Register.action("AttachWindow", AttachWindow)
     public readonly actionAttachWindow: ActionType;
 
-    //@Register.message("MsgTestValue")
-    //public readonly messageTestValue: Message;
-
     //////////////////////
     //Items registrations
 
@@ -79,5 +82,59 @@ export default class WindowsMod extends Mod {
         recipeCache: []
     })
     public itemGlassWindow: ItemType;  
-	
+
+    @EventHandler(EventBus.Doodads, "revertToItem")
+    public iceSnowWallRevertToItem(doodad: Doodad, item: Item) {
+        if (doodad.type === this.doodads.doodadIceWallWindow || doodad.type === this.doodads.doodadSnowWallWindow) { 
+                // Retrieve custom data from the doodad and store on item
+                const windowItemDura = doodad.getData<number>("windowDura");
+                const windowItemDuraMax = doodad.getData<number>("windowDuraMax");
+                item.setData("windowDura", windowItemDura);
+                item.setData("windowDuraMax", windowItemDuraMax);
+                console.log("Doodad to item -> data set");
+
+                console.log("Item melt dacay:" + item.getDecayTime());
+        }
+    }
+
+    @EventHandler(EventBus.Doodads, "becomeFromItem")
+    public iceSnowItemRevertToDoodad(doodad: Doodad, item: Item) {
+
+        if (item.type === this.items.itemIceWallWindow || item.type === this.items.itemSnowWallWindow) {
+                // Retrieve custom data from the item and store on doodad
+                const windowItemDura = item.getData<number>("windowDura");
+                const windowItemDuraMax = item.getData<number>("windowDuraMax");
+                doodad.setData("windowDura", windowItemDura);
+                doodad.setData("windowDuraMax", windowItemDuraMax);
+                console.log("Item to doodad -> data set");
+
+                console.log("Doodad melt decay:" + doodad.meltDecay);
+        }
+    }
+
+    @EventHandler(EventBus.Doodads, "melted")
+    public catchSnowIceWindowedWallMelting(
+        host: Doodad, 
+        producedItems: Item[], 
+        producedTileEvents: TileEvent[], 
+        producedDoodad: Doodad | undefined) {
+
+        if (host.type === this.doodads.doodadIceWallWindow || this.doodads.doodadSnowWallWindow) {
+            console.log("Windowed ice or snow wall has melted, attempting to create window item from data")
+            // Retrieve custom data from the doodad
+            const windowItemDura = host.getData<number>("windowDura");
+            const windowItemDuraMax = host.getData<number>("windowDuraMax");
+            // Create the item on the doodad's tile
+            const createdItem = host.tile.island.items.create(this.itemGlassWindow, host.tile.asContainer, Quality.None);
+            // Set the durability of the created item
+            if (createdItem && windowItemDura !== undefined && windowItemDuraMax !== undefined) {
+                //Damage the window item by 1
+                createdItem.durability = windowItemDura - 1;
+                createdItem.durabilityMax = windowItemDuraMax;
+            }
+        }
+
+    }
+
+
 }

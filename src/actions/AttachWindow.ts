@@ -4,7 +4,6 @@ import { EntityType } from "@wayward/game/game/entity/IEntity";
 import { DoodadType } from "@wayward/game/game/doodad/IDoodad";
 import { RenderSource } from "@wayward/game/renderer/IRenderer";
 import WindowsMod from "../Mod";
-import { MessageType } from "@wayward/game/game/entity/player/IMessageManager";
 
 export default new Action(ActionArgument.ItemInventory)
     .setUsableBy(EntityType.Human)
@@ -15,10 +14,8 @@ export default new Action(ActionArgument.ItemInventory)
         const validDoodadsForAttachingWindow = [DoodadType.GraniteWall, DoodadType.BasaltWall, DoodadType.IceWall, DoodadType.SnowWall, DoodadType.ClayWall, DoodadType.WoodenWall, DoodadType.AshCementWall, DoodadType.SandstoneWall] 
 
         if (targetDoodad && validDoodadsForAttachingWindow.includes(targetDoodad.type)) {
-            console.log("Attach window action can be used");
             return { usable: true };
         }
-        console.log("Attach window action cannot be used");
         return { usable: false };
 
     })
@@ -59,19 +56,16 @@ export default new Action(ActionArgument.ItemInventory)
                 return; // Exit if the doodad type is not handled
         }
 
-        let tileDoodadDura = tileDoodad.durability;
-        let tileDoodadDuraMax = tileDoodad.durabilityMax;
-        let tileDoodadQuality = tileDoodad.quality;
-
         action.executor.island.doodads.remove(tileDoodad);
 
         let newDoodad = action.executor.island.doodads.create(
             newDoodadType, 
             action.executor.facingTile, 
             { 
-                durability: tileDoodadDura, 
-                durabilityMax: tileDoodadDuraMax, 
-                quality: tileDoodadQuality 
+                durability: tileDoodad.durability, 
+                durabilityMax: tileDoodad.durabilityMax, 
+                quality: tileDoodad.quality,
+                meltDecay: tileDoodad.meltDecay
             }
         );
 
@@ -81,9 +75,16 @@ export default new Action(ActionArgument.ItemInventory)
         } 
 
         // set/getData basic relay example
-        newDoodad?.setData("testdatafield", 19);
-        let doodadTestValue = newDoodad?.getData<number>("testdatafield")
-        action.executor.messages.type(MessageType.Good).send(WindowsMod.WINMOD.messages.messageTestValue, doodadTestValue);
+        //newDoodad?.setData("testdatafield", 19);
+        //let doodadTestValue = newDoodad?.getData<number>("testdatafield")
+        //action.executor.messages.type(MessageType.Good).send(WindowsMod.WINMOD.messages.messageTestValue, doodadTestValue);
+
+        let itemWindowDura = item.durability
+        let itemWindowDuraMax = item.durabilityMax
+        newDoodad?.setData("windowDura", itemWindowDura);
+        newDoodad?.setData("windowDuraMax", itemWindowDuraMax);
+
+        //action.executor.messages.type(MessageType.Good).send(WindowsMod.WINMOD.messages.messageDebugWindow1, newDoodad?.getData<number>("windowDura"), newDoodad?.getData<number>("windowDuraMax"));
         
         action.executor.island.items.remove(item); 
 

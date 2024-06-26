@@ -7,11 +7,12 @@
 		},
 
         "message": {
-            "modWindowsModMsgTestValue": ["The test value is: {0}"]
+            "modWindowsModMsgTestValue": ["The test value is: {0}"],
+            "modWindowsModMsgDebugWindow1": ["Window item durability data is: {0} and window item max durability data is: {1}"] 
         },
 
         "tileEvent": {
-            "modWindowsModMeltedWindow": ["Glass Window (tile event variant)"]
+            "modWindowsModMeltedWindow": ["Glass Window (tile event variant)"] 
         },
 
         "item": {

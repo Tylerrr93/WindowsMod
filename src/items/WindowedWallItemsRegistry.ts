@@ -77,7 +77,7 @@ export default class WindowedWallItemsRegistry {
         recipe: {
             components: [
                 RecipeComponent(ItemType.IceBrick, 6, 6, 2),
-                RecipeComponent(Registry<WindowsMod>(WINMOD_NAME).get("itemGlassWindow"), 1, 1, 1),
+                RecipeComponent(Registry<WindowsMod>(WINMOD_NAME).get("itemGlassWindow"), 1, 1, 0),
                 RecipeComponent(ItemTypeGroup.Hammer, 1, 0, 0)
             ],
             skill: SkillType.Tinkering,
@@ -132,7 +132,7 @@ export default class WindowedWallItemsRegistry {
         recipe: {
             components: [
                 RecipeComponent(ItemType.SnowBrick, 6, 6, 2),
-                RecipeComponent(Registry<WindowsMod>(WINMOD_NAME).get("itemGlassWindow"), 1, 1, 1),
+                RecipeComponent(Registry<WindowsMod>(WINMOD_NAME).get("itemGlassWindow"), 1, 1, 0),
                 RecipeComponent(ItemTypeGroup.Hammer, 1, 0, 0)
             ],
             skill: SkillType.Tinkering,
