@@ -91,9 +91,8 @@ export default class WindowsMod extends Mod {
                 const windowItemDuraMax = doodad.getData<number>("windowDuraMax");
                 item.setData("windowDura", windowItemDura);
                 item.setData("windowDuraMax", windowItemDuraMax);
-                console.log("Doodad to item -> data set");
-
-                console.log("Item melt dacay:" + item.getDecayTime());
+                //console.log("Doodad to item -> data set");
+                //console.log("Item melt dacay:" + item.getDecayTime());
         }
     }
 
@@ -106,9 +105,8 @@ export default class WindowsMod extends Mod {
                 const windowItemDuraMax = item.getData<number>("windowDuraMax");
                 doodad.setData("windowDura", windowItemDura);
                 doodad.setData("windowDuraMax", windowItemDuraMax);
-                console.log("Item to doodad -> data set");
-
-                console.log("Doodad melt decay:" + doodad.meltDecay);
+                //console.log("Item to doodad -> data set");
+                //console.log("Doodad melt decay:" + doodad.meltDecay);
         }
     }
 
